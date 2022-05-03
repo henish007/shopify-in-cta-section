@@ -1,0 +1,110 @@
+<style type="text/css">
+  .text_image_sec{
+    background-image: url({{ block.settings.image | image_url: width: 1500 }});
+  }
+</style>
+
+
+<div class="text_image_sec">
+  
+  <div class="rich-text">
+  
+    <div class="text_image_sec_blocks">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          	
+      		{%- when 'heading' -%}
+            	<h2>{{ block.settings.heading}}</h2>
+    
+      		{%- when 'text' -%}
+            	<div class="text_image_sec_text">{{ block.settings.text }}</div>
+      
+      	    {%- when 'button' -%}
+              <a {% if block.settings.button_link == blank %} {% else %} href="{{ block.settings.button_link }}"{% endif %}>
+                {{ block.settings.button_label}}
+              </a>
+      
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+    
+  </div>
+  
+</div>
+
+{% schema %}
+{
+  "name": "text_image_slider",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image Picker"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Talk about your brand",
+          "label": "Heading Text"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Enter Text</p>",
+          "label": "Paragraph"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Button label",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "text_image_slider",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
