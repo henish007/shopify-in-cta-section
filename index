@@ -1,6 +1,7 @@
 <style type="text/css">
   .text_image_sec{
-    background-image: url({{ block.settings.image | image_url: width: 1500 }});
+    background: url({{ section.settings.bg_image | img_url : 'master' }});
+    text-align: center;
   }
 </style>
 
@@ -35,9 +36,9 @@
   "class": "section",
   "settings": [
     {
-    "type": "image_picker",
-    "id": "image",
-    "label": "Image Picker"
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Custom Background Image"
     }
   ],
   "blocks": [
