@@ -6,7 +6,8 @@
     padding: {{ section.settings.padding }}px 0;
   }
   .text_image_sec_blocks h2{
-      font-size: {{ section.settings.heading_txt }}px;  	
+      font-size: {{ section.settings.heading_txt }}px;  
+      font-weight: 600;
       margin: 0;
       color: {{ section.settings.txt_color }};
   }
@@ -87,7 +88,7 @@
 </style>
 
 
-<div class="text_image_sec {{ section.settings.bg_overly }} {{ section.settings.image_alignment }}">
+<div class="text_image_sec {{ section.settings.bg_overly }} {{ section.settings.image_alignment }} {{ section.settings.section_class }} ">
   
     <div class="page-width text_image_sec_blocks {% if section.settings.column_alignment == 'center' %} center{% endif %}{% if section.settings.column_alignment == 'right' %} right{% endif %}">
       {%- for block in section.blocks -%}
@@ -112,7 +113,7 @@
 
 {% schema %}
 {
-  "name": "text_image_slider",
+  "name": "banner section",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -120,6 +121,11 @@
       "type": "image_picker",
       "id": "bg_image",
       "label": "Custom Background Image"
+    },
+    {
+      "type": "text",
+      "id": "section_class",
+      "label": "Add Class"
     },
     {
     "type": "select",
